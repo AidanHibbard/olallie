@@ -9,8 +9,7 @@ The name Olallie comes from a [lake in Oregon.](https://www.fs.usda.gov/recarea/
 
 ## Opinions
 
-- Actions always use `state` as the first param. 
-- Actions always mutate, or use the state.
+- Actions always use `state` as the first parameter.
 
 ## Getting Started
 ### Installation
