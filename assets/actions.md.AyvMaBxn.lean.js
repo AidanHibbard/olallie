@@ -1,0 +1,1 @@
+import{_ as s,o as i,c as a,R as n}from"./chunks/framework.bsMm76aS.js";const o=JSON.parse('{"title":"Actions","description":"","frontmatter":{},"headers":[],"relativePath":"actions.md","filePath":"actions.md"}'),t={name:"actions.md"},h=n("",4),l=[h];function p(k,e,E,r,d,g){return i(),a("div",null,l)}const c=s(t,[["render",p]]);export{o as __pageData,c as default};
