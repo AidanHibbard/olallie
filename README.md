@@ -13,40 +13,39 @@ The name Olallie comes from a [lake in Oregon.](https://www.fs.usda.gov/recarea/
 - Actions always mutate, or use the state.
 
 ## Getting Started
-- ### Installation
-  - Install the module
-    ```bash
-    npm i olallie
-    ```
-    - Optional: Install types
-    ```bash
-    npm i -D @types/olallie
-    ```
-  - TS config
-    - Make sure to change target to ESNext or ES2022
-- ### Basic store
-  - Olallie follows a Pinia like store pattern
-    ```typescript
-    import { createStore } from 'olallie';
+### Installation
+Install the module
+  ```bash
+  npm i olallie
+  ```
+  - Optional: Install types
+  ```bash
+  npm i -D @types/olallie
+  ```
+TS config
+  - Make sure to change target to ESNext or ES2022
+### Basic store
+Olallie follows a Pinia like store pattern
+  ```typescript
+  import { createStore } from 'olallie';
 
-    const test_store = createStore({
-      state: () => ({
-        per_page: 1,
-        page: 1,
-      }),
-      actions: {
-        add(state, amount: number) {
-          state.count += amount;
-          return state.count;
-        },
+  const test_store = createStore({
+    state: () => ({
+      count: 1,
+    }),
+    actions: {
+      add(state, amount: number) {
+        state.count += amount;
+        return state.count;
       },
-      getters: {
-        doubled: (state) => state.count * 2,
-      },
-    });
+    },
+    getters: {
+      doubled: (state) => state.count * 2,
+    },
+  });
 
-    // The store can be used as
-    const count: number = test_store.count; // 1
-    const new_count: number = test_store.add(3); // 4
-    const doubled_count: number = test_store.doubled; // 8
-    ```
+  // The store can be used as
+  const count: number = test_store.count; // 1
+  const new_count: number = test_store.add(3); // 4
+  const doubled_count: number = test_store.doubled; // 8
+  ```
