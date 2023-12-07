@@ -1,0 +1,43 @@
+{
+  "name": "olallie",
+  "version": "0.0.1",
+  "description": "A simple store",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "dev": "vitest dev",
+    "lint": "eslint --cache --ext .ts,.js,.mjs,.cjs . && prettier -c src spec",
+    "lint:fix": "eslint --cache --ext .ts,.js,.mjs,.cjs . --fix && prettier -c src spec -w",
+    "prepack": "npm run build",
+    "release": "npm run spec && changelogen --release && npm publish && git push --follow-tags",
+    "spec": "npm run lint && npm run spec:types && vitest",
+    "spec:types": "tsc --noEmit --skipLibCheck",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.2",
+    "@vitest/coverage-v8": "^0.34.6",
+    "changelogen": "^0.5.5",
+    "eslint": "^8.50.0",
+    "eslint-config-unjs": "^0.2.1",
+    "prettier": "^3.0.3",
+    "semantic-release": "^22.0.5",
+    "typescript": "^5.2.2",
+    "unbuild": "^2.0.0",
+    "vitepress": "^1.0.0-rc.24",
+    "vitest": "^0.34.6"
+  }
+}
