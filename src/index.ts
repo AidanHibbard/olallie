@@ -72,27 +72,25 @@ export function createStore<
     }
   }
 
-  // Property 'listen' does not exist on type 'S'.ts(2339)
-  store.listen = function <K extends keyof S>(key: K, callback: (value: S[K]) => void) {
+  (store as Store<S, A, G>).listen = function <K extends keyof S>(key: K, callback: (value: S[K]) => void) {
     if (!listeners[key as string]) {
       listeners[key as string] = [];
     }
     listeners[key as string].push(callback);
   };
 
-  // roperty 'unlisten' does not exist on type 'S'.ts(2339)
-  store.unlisten = function <K extends keyof S>(key: K) {
+  (store as Store<S, A, G>).unlisten = function <K extends keyof S>(key: K) {
     delete listeners[key as string];
   };
 
-  function triggerListeners(key: keyof S, value: any) {
-    const keyListeners = listeners[key as string];
-    if (keyListeners) {
-      for (const callback of keyListeners) {
-        callback(value);
-      }
+function triggerListeners<K extends keyof S>(key: K, value: S[K]) {
+  const keyListeners = listeners[key as string];
+  if (keyListeners) {
+    for (const callback of keyListeners) {
+      callback(value);
     }
   }
+}
 
   return store as Store<S, A, G>;
 }
