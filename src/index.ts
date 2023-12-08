@@ -48,6 +48,14 @@ export function createStore<
         ...args: any[]
       ) => {
         const result = action(store, ...args);
+        /*
+          Argument of type 'Extract<keyof A, string>' is not assignable to parameter of type 'keyof S'.
+            Type 'string' is not assignable to type 'keyof S'.ts(2345)
+          const key: Extract<keyof A, string>
+
+          Type 'Extract<keyof A, string>' cannot be used to index type 'S'.ts(2536)
+          const key: Extract<keyof A, string>
+        */
         triggerListeners(key, store[key]);
         return result;
       };
@@ -64,23 +72,25 @@ export function createStore<
     }
   }
 
+  // Property 'listen' does not exist on type 'S'.ts(2339)
   store.listen = function <K extends keyof S>(key: K, callback: (value: S[K]) => void) {
-    if (!listeners[key]) {
-      listeners[key] = [];
+    if (!listeners[key as string]) {
+      listeners[key as string] = [];
     }
-    listeners[key].push(callback);
+    listeners[key as string].push(callback);
   };
 
+  // roperty 'unlisten' does not exist on type 'S'.ts(2339)
   store.unlisten = function <K extends keyof S>(key: K) {
-    delete listeners[key];
+    delete listeners[key as string];
   };
 
   function triggerListeners(key: keyof S, value: any) {
-    const keyListeners = listeners[key];
+    const keyListeners = listeners[key as string];
     if (keyListeners) {
-      keyListeners.forEach((callback) => {
+      for (const callback of keyListeners) {
         callback(value);
-      });
+      }
     }
   }
 
@@ -107,9 +117,10 @@ const test_store = createStore({
 });
 
 test_store.listen('count', (value) => {
-  console.log(value)
+  console.log(value);
 });
 test_store.count++;
+test_store.increment('hello');
 test_store.unlisten('count');
 test_store.count++;
 
