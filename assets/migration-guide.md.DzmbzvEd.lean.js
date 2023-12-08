@@ -1,1 +1,0 @@
-import{_ as e,o as t,c as a}from"./chunks/framework.bsMm76aS.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"migration-guide.md","filePath":"migration-guide.md"}'),i={name:"migration-guide.md"};function r(o,n,s,c,d,m){return t(),a("div")}const f=e(i,[["render",r]]);export{_ as __pageData,f as default};

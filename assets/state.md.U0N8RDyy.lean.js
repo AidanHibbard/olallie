@@ -1,0 +1,1 @@
+import{_ as s,o as i,c as a,R as t}from"./chunks/framework.6TS-1Tbh.js";const y=JSON.parse('{"title":"State","description":"","frontmatter":{"outline":"deep"},"headers":[],"relativePath":"state.md","filePath":"state.md"}'),n={name:"state.md"},e=t("",8),p=[e];function l(h,k,r,d,E,o){return i(),a("div",null,p)}const g=s(n,[["render",l]]);export{y as __pageData,g as default};

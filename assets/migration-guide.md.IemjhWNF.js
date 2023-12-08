@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as a}from"./chunks/framework.6TS-1Tbh.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{"outline":"deep"},"headers":[],"relativePath":"migration-guide.md","filePath":"migration-guide.md"}'),i={name:"migration-guide.md"};function o(r,n,s,c,d,m){return t(),a("div")}const u=e(i,[["render",o]]);export{_ as __pageData,u as default};
