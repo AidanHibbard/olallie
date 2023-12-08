@@ -33,6 +33,8 @@ Olallie follows a Pinia like store pattern
       count: 1,
     }),
     actions: {
+      // Always pass state to actions
+      // State it automatically typed
       add(state, amount: number) {
         state.count += amount;
         return state.count;

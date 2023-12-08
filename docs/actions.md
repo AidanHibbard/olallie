@@ -1,3 +1,6 @@
+---
+outline: deep
+---
 # Actions
 
 Actions are written similar to Vuex mutations. They take the state as a parameter, and mutate, or use the state in the action logic. However, actions can be async, and are called directly from the store.

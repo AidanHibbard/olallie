@@ -1,3 +1,6 @@
+---
+outline: deep
+---
 # State
 
 State in a store is defined with an arrow funtion, and should return an object. You can access the state directly from the store itself.

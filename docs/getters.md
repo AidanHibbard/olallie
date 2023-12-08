@@ -1,3 +1,6 @@
+---
+outline: deep
+---
 # Getters
 Getters are accessors of the store state, and should be used to return computed values.
 
