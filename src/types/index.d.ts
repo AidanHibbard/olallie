@@ -1,3 +1,4 @@
+
 export type StoreOptions<
   S,
   A extends Record<string, (...args: any[]) => any>,
@@ -21,6 +22,9 @@ export type Store<
   [K in keyof A]: (...args: Tail<Parameters<A[K]>>) => ReturnType<A[K]>;
 } & {
   [K in keyof G]: G[K];
+} & {
+  listen<K extends keyof S>(key: K, callback: (value: S[K]) => void): void;
+  unlisten<K extends keyof S>(key: K): void;
 };
 
 export type Tail<T extends any[]> = ((...args: T) => any) extends (
