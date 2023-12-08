@@ -34,14 +34,19 @@ export function createStore<
     }
   }
 
-  (stateProxy as Store<S, A, G>).listen = function <K extends keyof S>(key: K, callback: (value: S[K]) => void) {
+  (stateProxy as Store<S, A, G>).listen = function <K extends keyof S>(
+    key: K,
+    callback: (value: S[K]) => void,
+  ) {
     if (!listeners[key as string]) {
       listeners[key as string] = [];
     }
     listeners[key as string].push(callback);
   };
 
-  (stateProxy as Store<S, A, G>).unlisten = function <K extends keyof S>(key: K) {
+  (stateProxy as Store<S, A, G>).unlisten = function <K extends keyof S>(
+    key: K,
+  ) {
     delete listeners[key as string];
   };
 

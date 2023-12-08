@@ -7,10 +7,6 @@ Existing stores written in Vuex, or Pinia needed to be able to migrate over quic
 
 The name Olallie comes from a [lake in Oregon.](https://www.fs.usda.gov/recarea/mthood/recarea/?recid=52978)
 
-## Opinions
-
-- Actions always use `state` as the first parameter.
-
 ## Getting Started
 ### Installation
 Install the module
@@ -34,7 +30,7 @@ Olallie follows a Pinia like store pattern
     }),
     actions: {
       // Always pass state to actions
-      // State it automatically typed
+      // State is automatically typed
       add(state, amount: number) {
         state.count += amount;
         return state.count;
@@ -50,3 +46,33 @@ Olallie follows a Pinia like store pattern
   const new_count: number = test_store.add(3); // 4
   const doubled_count: number = test_store.doubled; // 8
   ```
+
+### Listeners
+Olallie supports listening to mutations of items in your state, and will provide a list keys in your stores state to choose from. The watched value will be automatically inferred, however Olallie does not support deep object wathing.
+
+#### Example
+```typescript
+import { createStore } from 'olallie';
+
+const listeners_store = createStore({
+  state: (): State => ({
+    count: 0,
+    event_count: 0,
+  }),
+});
+
+// (parameter) value: number
+listeners_store.listen('count', (value) => {
+  listeners_store.event_count = value;
+});
+
+listeners_store.count++;
+console.log(listeners_store.event_count) // 1
+```
+
+Removing your stores listeners is simple.
+
+#### Example
+```typescript
+listeners_store.unlisten('count');
+```

@@ -19,12 +19,13 @@ export default defineConfig({
           { text: 'State', link: '/state' },
           { text: 'Actions', link: '/actions' },
           { text: 'Getters', link: '/getters' },
+          { text: 'Listeners', link: '/listeners' }
         ]
-      }
+      },
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/AidanHibbard/olallie' }
+      { icon: 'github', link: 'https://github.com/AidanHibbard/Olallie' }
     ]
   }
 })

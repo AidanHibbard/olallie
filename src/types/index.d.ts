@@ -1,4 +1,3 @@
-
 export type StoreOptions<
   S,
   A extends Record<string, (...args: any[]) => any>,
