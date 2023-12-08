@@ -1,3 +1,6 @@
+---
+outline: deep
+---
 # State
 
 State in a store is defined with an arrow funtion, and should return an object. You can access the state directly from the store itself.
@@ -25,7 +28,7 @@ const { item_one, item_two } = state_store;
 ```
 
 ## TypeScript Support
-Types in your store should be automatically detected, however there may be times you want to define specific values for your state.
+Types in your store should be automatically detected. However, there may be times you want to define specific values for your state.
 
 #### Example
 ```typescript
