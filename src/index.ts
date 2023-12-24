@@ -7,13 +7,13 @@ export function createStore<
   G,
 >(options: StoreOptions<S, A, G>): Store<S, A, G> {
   const stateProxy = createProxy(options.state(), (key, value) => {
-    triggerListeners(key as keyof S, value);
+    triggerListeners(key, value);
   });
 
   const listeners: Record<string, Array<(value: any) => void>> = {};
 
   for (const key in options.actions) {
-    if (Object.hasOwnProperty.call(options.actions, key)) {
+    if (Object.hasOwn(options.actions, key)) {
       const action = options.actions[key];
       (stateProxy as Record<string, (...args: any[]) => any>)[key] = (
         ...args: any[]
@@ -25,7 +25,7 @@ export function createStore<
   }
 
   for (const key in options.getters) {
-    if (Object.hasOwnProperty.call(options.getters, key)) {
+    if (Object.hasOwn(options.getters, key)) {
       const getter = options.getters[key];
       Object.defineProperty(stateProxy, key, {
         get: () => getter(stateProxy),

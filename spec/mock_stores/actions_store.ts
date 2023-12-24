@@ -14,7 +14,7 @@ const actions_store = createStore({
         setTimeout(() => {
           state.response = query;
           resolve(true);
-        }, 1000);
+        }, 1);
       });
     },
     resetResponse(state) {

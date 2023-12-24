@@ -13,10 +13,6 @@ Install the module
   ```bash
   npm i olallie
   ```
-  - Optional: Install types
-  ```bash
-  npm i -D @types/olallie
-  ```
 TS config
   - Make sure to change target to ESNext or ES2022
 ### Basic store
