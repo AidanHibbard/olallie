@@ -1,8 +1,4 @@
-export type StoreOptions<
-  S,
-  A extends Record<string, (...args: any[]) => any>,
-  G,
-> = {
+export type StoreOptions<S, A, G> = {
   state: () => S;
   actions?: A;
   getters?: { [K in keyof G]: (state: S) => G[K] };
@@ -22,8 +18,10 @@ export type Store<
 } & {
   [K in keyof G]: G[K];
 } & {
-  listen<K extends keyof S>(key: K, callback: (value: S[K]) => void): void;
-  unlisten<K extends keyof S>(key: K): void;
+  listen<K extends keyof S>(
+    key: K,
+    callback: (value: S[K]) => void,
+  ): { unlisten: () => boolean };
 };
 
 export type Tail<T extends any[]> = ((...args: T) => any) extends (
