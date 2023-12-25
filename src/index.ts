@@ -10,7 +10,7 @@ export function createStore<
     triggerListeners(key, value);
   });
 
-  const listeners: Record<string, Array<(value: any) => void>> = {};
+  const listeners: Record<string, Set<(value: any) => void>> = {};
 
   for (const key in options.actions) {
     if (Object.hasOwn(options.actions, key)) {
@@ -39,21 +39,25 @@ export function createStore<
     callback: (value: S[K]) => void,
   ) {
     if (!listeners[key as string]) {
-      listeners[key as string] = [];
+      listeners[key as string] = new Set();
     }
-    listeners[key as string].push(callback);
-  };
+    listeners[key as string].add(callback);
 
-  (stateProxy as Store<S, A, G>).unlisten = function <K extends keyof S>(
-    key: K,
-  ) {
-    delete listeners[key as string];
+    return {
+      unlisten: () => {
+        const listenerSet = listeners[key as string];
+        if (listenerSet) {
+          return listenerSet.delete(callback);
+        }
+        return false;
+      },
+    };
   };
 
   function triggerListeners<K extends keyof S>(key: K, value: S[K]) {
-    const keyListeners = listeners[key as string];
-    if (keyListeners) {
-      for (const callback of keyListeners) {
+    const listenerSet = listeners[key as string];
+    if (listenerSet) {
+      for (const callback of listenerSet) {
         callback(value);
       }
     }
