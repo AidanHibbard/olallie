@@ -1,6 +1,6 @@
 {
   "name": "olallie",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A simple store",
   "type": "module",
   "exports": {
@@ -20,7 +20,7 @@
     "lint": "eslint --cache --ext .ts,.js,.mjs,.cjs . && prettier -c src spec",
     "lint:fix": "eslint --cache --ext .ts,.js,.mjs,.cjs . --fix && prettier -c src spec -w",
     "prepack": "npm run build",
-    "release": "npm run spec && npm publish",
+    "release": "npm run spec && npm run prepack && npm publish",
     "spec": "npm run lint && npm run spec:types && npm run spec:coverage",
     "spec:coverage": "vitest run --coverage",
     "spec:types": "tsc --noEmit --skipLibCheck",
