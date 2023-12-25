@@ -44,11 +44,16 @@ Olallie follows a Pinia like store pattern
   ```
 
 ### Listeners
-Olallie supports listening to mutations of items in your state, and will provide a list keys in your stores state to choose from. The watched value will be automatically inferred, however Olallie does not support deep object wathing.
+Olallie supports listening to mutations of items in your state, and will provide a list keys in your stores state to choose from. The watched value will be automatically inferred.
 
 #### Example
 ```typescript
 import { createStore } from 'olallie';
+
+interface State {
+  count: number;
+  event_count: number;
+};
 
 const listeners_store = createStore({
   state: (): State => ({
@@ -58,7 +63,7 @@ const listeners_store = createStore({
 });
 
 // (parameter) value: number
-listeners_store.listen('count', (value) => {
+const listener = listeners_store.listen('count', (value) => {
   listeners_store.event_count = value;
 });
 
@@ -66,9 +71,11 @@ listeners_store.count++;
 console.log(listeners_store.event_count) // 1
 ```
 
-Removing your stores listeners is simple.
+To disable the listener, call `unlisten()`. This method returns a boolean letting you know if the listener has already been removed.
 
 #### Example
 ```typescript
-listeners_store.unlisten('count');
+listener.unlisten(); // true
+// Attempting to unlisten a second time returns false
+listener.unlisten(); // false
 ```
