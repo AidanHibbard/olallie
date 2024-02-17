@@ -7,7 +7,7 @@ export function createProxy<T extends Record<string, any>>(
       obj[prop as keyof T] = value;
       onSet(prop as keyof T, value);
       return true;
-    },
+    }
   });
 }
 
@@ -44,10 +44,9 @@ export type Tail<T extends any[]> = ((...args: T) => any) extends (
   ? U
   : never;
 
-
 export function createStore<
-  S extends Record<string, any>,
-  A extends Record<string, ActionFunction<S, any, any>>,
+  S extends Record<keyof S, any>,
+  A extends Record<keyof A, ActionFunction<S, any, any>>,
   G,
 >(options: StoreOptions<S, A, G>): Store<S, A, G> {
   const stateProxy = createProxy(options.state(), (key, value) => {

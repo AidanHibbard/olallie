@@ -8,12 +8,16 @@ const index_store = createStore({
   state: () => ({
     count: 1,
   }),
-  getters: {
-    tripled: (state) => state.count * 3,
-  },
+  actions: {
+    // State type should be inferred here
+    // state: any
+    add(state, payload: { amount: number }) {
+      state.count += payload.amount;
+      return payload.amount;
+    },
+  }
 });
 
-// Should error that test() doesn't exist on index_store
-index_store.test();
+index_store.add({ amount: 2 });
 
 export default index_store;

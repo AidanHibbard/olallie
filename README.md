@@ -79,3 +79,30 @@ listener.unlisten(); // true
 // Attempting to unlisten a second time returns false
 listener.unlisten(); // false
 ```
+
+### Frameworks
+
+#### Vue
+
+To use Olallie in Vue 3, simply wrap your state with reactive.
+
+```typescript
+<script setup lang="ts">
+import { createStore } from 'olallie';
+import { reactive } from 'vue';
+
+const store = createStore({
+  state: () => reactive({
+    count: 0,
+  }),
+});
+</script>
+
+<template>
+  <div>
+    <button @click="store.count++">
+      {{ store.count }}
+    </button>
+  </div>
+</template>
+```
