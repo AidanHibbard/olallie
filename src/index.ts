@@ -54,7 +54,7 @@ export function createStore<
     triggerListeners(key, value);
   });
 
-  const listeners: Record<string, Set<(value: keyof S) => void>> = {};
+  const listeners: Record<string, Set<(value: any) => void>> = {};
 
   for (const key in options.actions) {
     if (Object.hasOwn(options.actions, key)) {
