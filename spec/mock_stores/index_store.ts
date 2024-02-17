@@ -5,12 +5,15 @@ interface State {
 }
 
 const index_store = createStore({
-  state: (): State => ({
+  state: () => ({
     count: 1,
   }),
   getters: {
     tripled: (state) => state.count * 3,
   },
 });
+
+// Should error that test() doesn't exist on index_store
+index_store.test();
 
 export default index_store;
