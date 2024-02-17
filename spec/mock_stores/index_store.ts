@@ -16,7 +16,8 @@ const index_store = createStore({
   }
 });
 
-// (property) add: (...args: any[]) => any
+// Coming back as incorrect type of: (property) add: (...args: any[]) => any
+// should be: (method) add: ({ amount: number }) => number
 index_store.add({ amount: 2 });
 
 export default index_store;

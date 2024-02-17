@@ -11,10 +11,9 @@ export function createProxy<T extends Record<string, any>>(
   });
 }
 
-export type StoreOptions<S, A, G> = {
+export type StoreOptions<S, A extends Record<keyof A, ActionFunction<S, any, any>>, G> = {
   state: () => S;
-  // Type 'A[K]' does not satisfy the constraint '(...args: any) => any'.
-  actions?: { [K in keyof A]: (state: S, ...args: Tail<Parameters<A[K]>>) => ReturnType<A[K]> };
+  actions?: { [K in keyof A]: (state: S, ...args: Tail<Parameters<A[K]>>) =>  ReturnType<A[K]>};
   getters?: { [K in keyof G]: (state: S) => G[K] };
 };
 
@@ -25,7 +24,7 @@ export type ActionFunction<S, Args extends any[], Result> = (
 
 export type Store<
   S,
-  A extends Record<string, ActionFunction<S, any, any>>,
+  A extends Record<keyof A, ActionFunction<S, any, any>>,
   G,
 > = S & {
   [K in keyof A]: (...args: Tail<Parameters<A[K]>>) => ReturnType<A[K]>;
@@ -60,7 +59,7 @@ export function createStore<
     if (Object.hasOwn(options.actions, key)) {
       const action = options.actions[key];
       (stateProxy as Record<string, (...args: any[]) => any>)[key] = (
-        ...args: any[]
+        ...args: Tail<Parameters<A[Extract<keyof A, string>]>>
       ) => {
         const result = action(stateProxy, ...args);
         return result;
