@@ -13,7 +13,8 @@ export function createProxy<T extends Record<string, any>>(
 
 export type StoreOptions<S, A, G> = {
   state: () => S;
-  actions?: A;
+  // Type 'A[K]' does not satisfy the constraint '(...args: any) => any'.
+  actions?: { [K in keyof A]: (state: S, ...args: Tail<Parameters<A[K]>>) => ReturnType<A[K]> };
   getters?: { [K in keyof G]: (state: S) => G[K] };
 };
 
