@@ -37,10 +37,10 @@ describe('Store listeners', () => {
       expect(listenersStore.listenerCount).toEqual(1);
       expect(listenersStore.listenerTwoCount).toEqual(2);
     });
-    it('Returns false if listener has already been removed', () => {
+    it('Should return false if listener was already removed', () => {
       expect(listener.unlisten()).toBeFalsy();
     });
-    it('Returns true when removing a second listener for the same key', () => {
+    it('Returns true when removing another listener for the same key', () => {
       expect(listenerTwo.unlisten()).toBeTruthy();
     });
   });
