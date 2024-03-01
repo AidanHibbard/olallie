@@ -67,7 +67,7 @@ State values can be accessed from the store itself with type-safety.
 const count = stateStore.count;
 ```
 
-You can also apply custom types to your state
+You can also apply custom types to your state.
 
 ```ts
 interface State {
@@ -110,7 +110,7 @@ const store = createStore({
 });
 ```
 
-Store actions can also be async
+Store actions can also be async.
 
 ```ts
 const store = createStore({
@@ -139,8 +139,6 @@ const user = store.response;
 ### Getters
 
 Getters should return computed values without manipulating the state itself.
-
-State is always required to be passed.
 
 ```ts
 const store = createStore({
@@ -190,3 +188,6 @@ Listeners can be removed by calling `unlisten()` which will return a boolean.
 listener.unlisten(); // true
 listener.unlisten(); // false - Already been removed 
 ```
+
+## Contributing
+
