@@ -12,7 +12,7 @@ The name Olallie comes from a [lake in Oregon.](https://www.fs.usda.gov/recarea/
 import { createStore } from 'olallie';
 
 const store = createStore({
-  state: (): => ({
+  state: () => ({
     count: 0
   }),
   actions: {
