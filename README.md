@@ -150,6 +150,12 @@ const store = createStore({
   }),
   getters: {
     // State is automatically typed
+    /*
+    (parameter) state: {
+      firstName: string;
+      lastName: string;
+    }
+    */
     fullName: (state) => `${state.firstName} ${state.lastName}`;
   }
 });
@@ -176,4 +182,11 @@ const listener = store.listen('count', (value) => {
 });
 
 store.count++;
+```
+
+Listeners can be removed by calling `unlisten()` which will return a boolean.
+
+```ts
+listener.unlisten(); // true
+listener.unlisten(); // false - Already been removed 
 ```
