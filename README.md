@@ -2,9 +2,16 @@
 
 ## Background
 
-Built to be a lightweight, unopinionated, state management tool for framework-less projects.
+Built to be a lightweight state management tool for framework-less projects.
 
 The name Olallie comes from a [lake in Oregon.](https://www.fs.usda.gov/recarea/mthood/recarea/?recid=52978)
+
+## Quick links
+
+- [State](#state)
+- [Actions](#actions)
+- [Getters](#getters)
+- [Listeners](#listeners)
 
 ## Example usage
 
@@ -24,10 +31,12 @@ const store = createStore({
     },
   },
   getters: {
+    // State is automatically inferred
     doubled: (state) => state.count * 2,
   },
 });
 
+// Call options from the store
 store.add(1); // 1
 const count = store.count; // 1
 const doubled = store.doubled; // 2
@@ -35,10 +44,12 @@ const doubled = store.doubled; // 2
 
 ## Installation
 - Install the module
+
   ```bash
   npm i olallie
   ```
 - Set your TS Config compiler options target to ESNext
+
   ```json
     "compilerOptions": {
       "target": "ESNext",
@@ -87,7 +98,7 @@ Actions should update, and, or return state values. They have access to state, g
 
 ```ts
 const store = createStore({
-  state: (): => ({
+  state: () => ({
     count: 0
   }),
   actions: {
@@ -190,4 +201,3 @@ listener.unlisten(); // false - Already been removed
 ```
 
 ## Contributing
-

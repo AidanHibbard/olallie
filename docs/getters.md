@@ -2,23 +2,25 @@
 outline: deep
 ---
 # Getters
+
 Getters are accessors of the store state, and should be used to return computed values.
 
 #### Example
-```typescript
+
+```ts
 // Import Olallie
 import { createStore } from 'olallie';
 
 // Setup the store
-const getters_store = createStore({
+const store = createStore({
   state: () => ({
-    first_name: 'Test',
-    last_name: 'Name'
+    count: 1,
   }),
   getters: {
-    greeting: (state) => `Hello ${state.first_name} ${state.last_name}`
+    // state is automatically typed
+    doubled: (state) => state.count * 2,
   },
 });
 
-const { greeting } = getters_store;
-console.log(greeting) // Hello Test Name
+console.log(store.doubled); // 2
+```
