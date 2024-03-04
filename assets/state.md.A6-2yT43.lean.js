@@ -1,0 +1,1 @@
+import{_ as s,c as i,o as a,a2 as t}from"./chunks/framework.D_MIcK21.js";const y=JSON.parse('{"title":"State","description":"","frontmatter":{"outline":"deep"},"headers":[],"relativePath":"state.md","filePath":"state.md"}'),n={name:"state.md"},e=t("",8),p=[e];function l(h,k,r,d,E,o){return a(),i("div",null,p)}const g=s(n,[["render",l]]);export{y as __pageData,g as default};
