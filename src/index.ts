@@ -54,32 +54,3 @@ export function createStore<S, A, G>(
 
   return store;
 }
-
-const actionsStore = createStore({
-  state: () => ({
-    count: 1,
-  }),
-  actions: {
-    multiply(value: number) {
-      this.count = this.count * value;
-      return this.count;
-    },
-    double() {
-      this.count = this.doubled;
-      return this.count;
-    },
-    async promisedAction(): Promise<boolean> {
-      return await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(true);
-        }, 1);
-      });
-    },
-    actionCaller() {
-      return this.double();
-    },
-  },
-  getters: {
-    doubled: (state) => state.count * 2,
-  },
-});
