@@ -44,6 +44,6 @@ If you're interested in contributing code, follow these steps:
 
 ## Code of Conduct
 
-Help us keep Olallie open and inclusive. Please read and follow our [Code of Conduct](code_of_conduct.md).
+Help keep Olallie open and inclusive. Please read and follow the [Code of Conduct](code_of_conduct.md).
 
 Thank you for your contribution!
