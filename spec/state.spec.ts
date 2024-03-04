@@ -1,16 +1,22 @@
 import { expect, it, describe } from 'vitest';
-import state_store from './mock_stores/state_store';
+import { createStore } from '../src/index';
 
-describe('Store getters', () => {
+const stateStore = createStore({
+  state: () => ({
+    count: 1,
+  }),
+});
+
+describe('Store state', () => {
   describe('Initial State', () => {
     it('Should have default values', () => {
-      expect(state_store.count).toEqual(1);
+      expect(stateStore.count).toEqual(1);
     });
   });
   describe('State', () => {
     it('Should be usable from store instance', () => {
-      state_store.count++;
-      expect(state_store.count).toEqual(2);
+      stateStore.count++;
+      expect(stateStore.count).toEqual(2);
     });
   });
 });

@@ -1,22 +1,59 @@
 import { expect, it, describe } from 'vitest';
-import actions_store from './mock_stores/actions_store';
+import { createStore } from '../src/index';
 
-describe('Store Actions', () => {
+const actionsStore = createStore({
+  state: () => ({
+    count: 1,
+  }),
+  actions: {
+    multiply(value: number) {
+      this.count = this.count * value;
+      return this.count;
+    },
+    double() {
+      this.count = this.doubled;
+      return this.count;
+    },
+    async promisedAction(): Promise<boolean> {
+      return await new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(true);
+        }, 1);
+      });
+    },
+    actionCaller() {
+      return this.double();
+    },
+  },
+  getters: {
+    doubled: (state) => state.count * 2,
+  },
+});
+
+describe('Store actions', () => {
   describe('Initial State', () => {
     it('Should have default values', () => {
-      expect(actions_store.response).toEqual(undefined);
+      expect(actionsStore.count).toEqual(1);
     });
   });
-  describe('Actions', () => {
-    it('Should mutate state with params', async () => {
-      await actions_store.fetchResponse('test');
-      const { response } = actions_store;
-      expect(response).toEqual('test');
+  describe('Actions manipulating state', () => {
+    it('Should set and return state value', () => {
+      expect(actionsStore.multiply(2)).toEqual(2);
     });
-    it('Should not require state param be passed', () => {
-      actions_store.resetResponse();
-      const { response } = actions_store;
-      expect(response).toEqual(undefined);
+  });
+  describe('Actions calling getters', () => {
+    it('Should set and return state value', () => {
+      expect(actionsStore.double()).toEqual(4);
+    });
+  });
+  describe('Actions calling other actions', () => {
+    it('Should set and return state value', () => {
+      expect(actionsStore.actionCaller()).toEqual(8);
+    });
+  });
+  describe('Async actions', () => {
+    it('Should return a promised value', async () => {
+      expect(await actionsStore.promisedAction()).toEqual(true);
     });
   });
 });
