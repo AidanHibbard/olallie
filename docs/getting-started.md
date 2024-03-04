@@ -4,19 +4,11 @@ outline: deep
 # Getting Started
 
 ## Installation
+
 - Install the module
 
   ```bash
   npm i olallie
-  ```
-- TS config
-  - Make sure to change target to ESNext or ES2022
-
-  ```json
-    "compilerOptions": {
-      "target": "ESNext",
-      "strict": true
-    },
   ```
 
 ## Basic store

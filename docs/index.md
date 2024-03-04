@@ -19,7 +19,5 @@ features:
     details: Manage your state, actions, and getters with ease.
   - title: Tiny
     details: Minimal JavaScript, and no dependencies.
-  - title: Flexible and Clean API
-    details: Feel at home with a Vuex / Pinia inspired structure.
 ---
 

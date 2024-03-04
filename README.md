@@ -43,18 +43,11 @@ const doubled = store.doubled; // 2
 ```
 
 ## Installation
+
 - Install the module
 
   ```bash
   npm i olallie
-  ```
-- Set your TS Config compiler options target to ESNext
-
-  ```json
-    "compilerOptions": {
-      "target": "ESNext",
-      "strict": true
-    },
   ```
 
 ## Documentation
@@ -130,15 +123,17 @@ const store = createStore({
   }),
   actions: {
     async fetch(userId: string): Promise<boolean> {
+      let data;
       await new Promise((resolve) => {
         setTimeout(() => {
+          data = {
+            id: userId,
+            name: 'John Doe'
+          };
           resolve(true);
         }, 1);
       });
-      this.response = {
-        id: userId,
-        name: 'John Doe'
-      };
+      this.response = data;
     },
   },
 });
@@ -201,3 +196,15 @@ listener.unlisten(); // false - Already been removed
 ```
 
 ## Contributing
+
+Follow the [contributor guidelines](.github/contributing.md) when opening a PR, or issue.
+
+### Project setup
+
+1. Install the version of node listed in the `.nvmrc`
+
+2. Install modules
+
+3. Run `spec` to lint & unit test
+
+
