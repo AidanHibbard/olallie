@@ -9,6 +9,6 @@ export type Store<S, A, G> = S &
   G & {
     listen<K extends keyof S>(
       key: K,
-      callback: (value: S[K]) => void,
+      callback: (newValue: S[K], oldValue: S[K]) => void,
     ): { unlisten: () => boolean };
   };

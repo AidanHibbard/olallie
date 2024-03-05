@@ -18,7 +18,9 @@ describe('Store listeners', () => {
     });
   });
   describe('Listeners', () => {
-    const listener = listenersStore.listen('count', (value) => {
+    let oldValue: number;
+    const listener = listenersStore.listen('count', (value, old) => {
+      oldValue = old;
       listenersStore.listenerCount = value;
     });
     const listenerTwo = listenersStore.listen('count', (value) => {
@@ -26,6 +28,7 @@ describe('Store listeners', () => {
     });
     it('Supports multiple listeners', () => {
       listenersStore.count++;
+      expect(oldValue).toEqual(0);
       expect(listenersStore.count).toEqual(1);
       expect(listenersStore.listenerCount).toEqual(1);
       expect(listenersStore.listenerTwoCount).toEqual(1);

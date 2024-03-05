@@ -1,3 +1,7 @@
+# 0.0.6
+- Add previous value to listeners
+- Update docs
+
 # 0.0.5
 - Functionality change
   - See [0.0.5](https://github.com/AidanHibbard/Olallie/pull/5)
