@@ -1,5 +1,12 @@
 # Olallie
 
+![GitHub Actions Workflow Status](https://github.com/AidanHibbard/olallie/actions/workflows/spec.yml/badge.svg?branch=main)
+![NPM License](https://img.shields.io/npm/l/olallie)
+![NPM Downloads](https://img.shields.io/npm/dw/olallie)
+![Codecov](https://img.shields.io/codecov/c/github/aidanhibbard/olallie)
+
+
+
 ## Background
 
 Built to be a lightweight state management tool for framework-less projects.

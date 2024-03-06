@@ -14,6 +14,9 @@
   "files": [
     "dist"
   ],
+  "license": "MIT",
+  "author": "AidanHibbard",
+  "repository": "https://github.com/AidanHibbard/olallie",
   "scripts": {
     "build": "unbuild",
     "dev": "vitest dev",
