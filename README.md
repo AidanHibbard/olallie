@@ -1,5 +1,12 @@
 # Olallie
 
+![GitHub Actions Workflow Status](https://github.com/AidanHibbard/olallie/actions/workflows/spec.yml/badge.svg?branch=main)
+![NPM License](https://img.shields.io/npm/l/olallie)
+![NPM Downloads](https://img.shields.io/npm/dw/olallie)
+![Codecov](https://img.shields.io/codecov/c/github/aidanhibbard/olallie)
+
+
+
 ## Background
 
 Built to be a lightweight state management tool for framework-less projects.
@@ -169,9 +176,9 @@ const name = store.fullName; // "John Doe"
 
 ### Listeners
 
-Listeners provide a helpful bit of reactivity with your store.
+Listeners provide a helpful bit of reactivity with your store. They work similarly to Vue watchers, you can listen for the new value, and previous value.
 
-You can assign listeners to specific keys of your stores state with automatic type inference.
+The `listen()` method will provide a list of your stores state keys to choose from, and automatically infer the value for you.
 
 ```ts
 const store = createStore({
@@ -180,9 +187,9 @@ const store = createStore({
   }),
 });
 
-// (parameter) value: number
-const listener = store.listen('count', (value) => {
-  console.log('Listener was called!')
+// (parameter) newValue: number, (parameter) oldValue: number
+const listener = store.listen('count', (newValue, oldValue) => {
+  console.log(`New value: ${newValue}, Old value: ${oldValue}`);
 });
 
 store.count++;

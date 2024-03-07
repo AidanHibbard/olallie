@@ -24,7 +24,7 @@ const store = createStore({
     },
   },
   getters: {
-    fullName: (state) => `${store.firstName} ${}`,
+    fullName: (state) => `${store.firstName} ${store.lastName}`,
   },
 });
 

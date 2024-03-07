@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: '/Olallie/',
+  base: '/olallie/',
   title: "Olallie",
   description: "Simple state management",
   themeConfig: {
@@ -20,7 +20,8 @@ export default defineConfig({
           { text: 'State', link: '/state' },
           { text: 'Actions', link: '/actions' },
           { text: 'Getters', link: '/getters' },
-          { text: 'Listeners', link: '/listeners' }
+          { text: 'Listeners', link: '/listeners' },
+          { text: 'API', link: '/api-reference' }
         ]
       },
     ],

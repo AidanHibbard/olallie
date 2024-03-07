@@ -13,17 +13,15 @@ import { createStore } from 'olallie';
 const store = createStore({
   state: () => ({
     count: 0,
-    eventCount: 0,
   }),
 });
 
-// (parameter) value: number
-const listener = store.listen('count', (value) => {
-  store.eventCount = value;
+// (parameter) newValue: number, (parameter) oldValue: number
+const listener = store.listen('count', (newValue, oldValue) => {
+  console.log(`New value: ${newValue}, Old value: ${oldValue}`);
 });
 
 store.count++;
-console.log(store.eventCount) // 1
 ```
 
 To disable the listener, call `unlisten()`. This method returns a boolean letting you know if the listener has already been removed.
