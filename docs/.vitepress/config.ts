@@ -20,7 +20,8 @@ export default defineConfig({
           { text: 'State', link: '/state' },
           { text: 'Actions', link: '/actions' },
           { text: 'Getters', link: '/getters' },
-          { text: 'Listeners', link: '/listeners' }
+          { text: 'Listeners', link: '/listeners' },
+          { text: 'API', link: '/api-reference' }
         ]
       },
     ],
