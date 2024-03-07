@@ -40,13 +40,13 @@ const store = createStore({ ...storeOptions });
 - Type: `{ [K in keyof G]: (state: S) => G[K] }`
 - Required: false
 
-  Add getters to the store that return computed state values. Read more about them in the [documentation](/getters)
+  Add getters to the store that return computed state values. Read more about them in the [documentation](/getters).
 
 ## `#listen`
 
 - Store method
 
-  Select a key of the state, listen to its new, and (optionally) previous values. Read more in the listeners [documentation](/listeners)
+  Select a key of the state, listen to its new, and (optionally) previous values. Read more in the listeners [documentation](/listeners).
 
   ```ts
   function listen<K extends keyof S>(
