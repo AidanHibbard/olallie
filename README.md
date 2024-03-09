@@ -4,6 +4,7 @@
 ![NPM License](https://img.shields.io/npm/l/olallie)
 ![NPM Downloads](https://img.shields.io/npm/dw/olallie)
 ![NPM Version](https://img.shields.io/npm/v/olallie)
+![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/olallie)
 
 
 
