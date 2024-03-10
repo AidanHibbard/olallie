@@ -2,9 +2,9 @@ import { expect, it, describe } from 'vitest';
 import { createStore } from '../src/index';
 
 const gettersStore = createStore({
-  state: () => ({
+  state: {
     count: 1,
-  }),
+  },
   getters: {
     doubled: (state) => state.count * 2,
   },

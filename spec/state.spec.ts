@@ -2,9 +2,9 @@ import { expect, it, describe } from 'vitest';
 import { createStore } from '../src/index';
 
 const stateStore = createStore({
-  state: () => ({
+  state: {
     count: 1,
-  }),
+  },
 });
 
 describe('Store state', () => {

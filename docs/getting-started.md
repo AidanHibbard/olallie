@@ -18,9 +18,9 @@ outline: deep
 import { createStore } from 'olallie';
 
 const store = createStore({
-  state: () => ({
+  state: {
     count: 1,
-  }),
+  },
   actions: {
     double() {
       // Actions can access state, getters, and actions

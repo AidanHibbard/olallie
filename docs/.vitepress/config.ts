@@ -9,9 +9,9 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Walkthrough', link: '/getting-started' },
-      { text: 'API', link: '/api-reference' }
+      { text: 'Upgrading', link: '/upgrade-guide' },
+      { text: 'API', link: '/api-reference' },
     ],
-
     sidebar: [
       {
         text: 'Usage',
@@ -21,13 +21,14 @@ export default defineConfig({
           { text: 'Actions', link: '/actions' },
           { text: 'Getters', link: '/getters' },
           { text: 'Listeners', link: '/listeners' },
-          { text: 'API', link: '/api-reference' }
+          { text: 'API', link: '/api-reference' },
+          { text: 'Upgrade Guide', link: '/upgrade-guide' },
         ]
       },
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/AidanHibbard/Olallie' }
+      { icon: 'github', link: 'https://github.com/AidanHibbard/olallie' }
     ]
   }
 })

@@ -2,11 +2,11 @@ import { expect, it, describe } from 'vitest';
 import { createStore } from '../src/index';
 
 const listenersStore = createStore({
-  state: () => ({
+  state: {
     count: 0,
     listenerCount: 0,
     listenerTwoCount: 0,
-  }),
+  },
 });
 
 describe('Store listeners', () => {

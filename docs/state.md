@@ -3,7 +3,7 @@ outline: deep
 ---
 # State
 
-State in a store is defined with an arrow funtion, and should return an object. You can access the state directly from the store itself.
+State is the only required key in the store, it's an object holding your stores initial data.
 
 #### example
 ```typescript
@@ -12,9 +12,9 @@ import { createStore } from 'olallie';
 
 // Setup the store
 const store = createStore({
-  state: () => ({
+  state: {
     count: 1,
-  }),
+  },
 });
 
 store.count++;
@@ -35,9 +35,9 @@ interface State {
 };
 
 const store = createStore({
-  state: (): State => ({
+  state: {
     status: 'Queued',
-  }),
+  } as State,
 });
 
 // Type '"test"' is not assignable to type '"Queued" | "Processing" | "Completed"'

@@ -1,6 +1,6 @@
 import type { StoreOptions, Store } from './types';
 
-export function createStore<S, A, G>(
+export function createStore<S extends object, A, G>(
   options: StoreOptions<S, A, G>,
 ): Store<S, A, G> {
   const listeners: Record<
@@ -8,7 +8,7 @@ export function createStore<S, A, G>(
     Set<(newValue: any, oldValue?: any) => void>
   > = {};
 
-  const state = new Proxy(options.state() as object, {
+  const state = new Proxy(options.state, {
     set(obj, prop, value) {
       const oldValue = (obj as S)[prop as keyof S];
       (obj as S)[prop as keyof S] = value;

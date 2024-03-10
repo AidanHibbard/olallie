@@ -13,9 +13,9 @@ import { createStore } from 'olallie';
 
 // Setup the store
 const store = createStore({
-  state: () => ({
+  state: {
     count: 1,
-  }),
+  },
   getters: {
     // state is automatically typed
     doubled: (state) => state.count * 2,
