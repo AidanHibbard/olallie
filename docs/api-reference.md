@@ -19,7 +19,7 @@ const store = createStore({ ...storeOptions });
 
 ### State
 
-- Type: `S`
+- Type: `S extends object`
 - Required: true
 
   State is the only required key, and is an object representing your stores initial state. You can read more about state in its [documentation](/state).

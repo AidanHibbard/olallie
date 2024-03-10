@@ -1,4 +1,4 @@
-export interface StoreOptions<S, A, G> {
+export interface StoreOptions<S extends object, A, G> {
   state: S;
   actions?: A & ThisType<S & A & G>;
   getters?: { [K in keyof G]: (state: S) => G[K] };
