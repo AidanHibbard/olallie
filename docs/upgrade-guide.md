@@ -22,24 +22,6 @@ outline: deep
   });
   ```
 
-## 0.0.5 -> 0.0.6
-
-- Listeners
-  - Optionally passes old value to listeners
-
-  ```ts
-  // 0.0.5 OLD
-  const listener = store.listen('key', (newValue) => {
-    ...
-  });
-
-  // 0.0.6 NEW
-  // OPTIONAL: pass oldValue in listeners
-  const listener = store.listen('key', (newValue, oldValue) => {
-    ...
-  });
-  ```
-
 ## 0.0.4 -> 0.0.5
 
 - Actions
