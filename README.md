@@ -24,9 +24,9 @@ The name Olallie comes from a [lake in Oregon.](https://www.fs.usda.gov/recarea/
 import { createStore } from 'olallie';
 
 const store = createStore({
-  state: () => ({
+  state: {
     count: 0
-  }),
+  },
   actions: {
     add(value: number) {
       // Actions have access to
@@ -59,13 +59,13 @@ const doubled = store.doubled; // 2
 
 ### State
 
-State is always required when creating a new store, and should be an arrow function returning a dictionary.
+State is always required when creating a new store, and should be an object.
 
 ```ts
 const stateStore = createStore({
-  state: () => ({
+  state: {
     count: 1,
-  }),
+  },
 });
 ```
 
@@ -84,9 +84,9 @@ interface State {
 }
 
 const stateStore = createStore({
-  state: (): State => ({
+  state: {
     count: 1,
-  }),
+  } as State,
 });
 ```
 
@@ -96,9 +96,9 @@ Actions should update, and, or return state values. They have access to state, g
 
 ```ts
 const store = createStore({
-  state: () => ({
+  state: {
     count: 0
-  }),
+  },
   actions: {
     add(value: number) {
       this.count += value;
@@ -123,9 +123,9 @@ Store actions can also be async.
 
 ```ts
 const store = createStore({
-  state: () => ({
+  state: {
     response: undefined,
-  }),
+  },
   actions: {
     async fetch(userId: string): Promise<boolean> {
       let data;
@@ -153,10 +153,10 @@ Getters should return computed values without manipulating the state itself.
 
 ```ts
 const store = createStore({
-  state: () => ({
+  state: {
     firstName: 'John',
     lastName: 'Doe'
-  }),
+  },
   getters: {
     // State is automatically typed
     /*
@@ -180,9 +180,9 @@ The `listen()` method will provide a list of your stores state keys to choose fr
 
 ```ts
 const store = createStore({
-  state: () => ({
+  state: {
     count: 0,
-  }),
+  },
 });
 
 // (parameter) newValue: number, (parameter) oldValue: number
