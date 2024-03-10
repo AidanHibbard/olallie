@@ -17,6 +17,7 @@ The name Olallie comes from a [lake in Oregon.](https://www.fs.usda.gov/recarea/
 - [Actions](#actions)
 - [Getters](#getters)
 - [Listeners](#listeners)
+- [Upgrade Guide](https://aidanhibbard.github.io/olallie/upgrade-guide.html)
 
 ## Example usage
 
