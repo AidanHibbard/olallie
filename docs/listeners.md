@@ -11,9 +11,9 @@ Listeners help keep your code reactive, and are meant to watch individual items 
 import { createStore } from 'olallie';
 
 const store = createStore({
-  state: () => ({
+  state: {
     count: 0,
-  }),
+  },
 });
 
 // (parameter) newValue: number, (parameter) oldValue: number

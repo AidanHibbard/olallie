@@ -9,11 +9,11 @@ Actions are muatators of the state, and can access the whole store through `this
 import { createStore } from 'olallie';
 
 const store = createStore({
-  state: () => ({
+  state: {
     firstName: 'John',
     lastName: 'Doe',
     userPreferences: {}
-  }),
+  },
   actions: {
     async fetchPreferences() {
       const data = await fetch(`/preferences/${this.fullName}`);
