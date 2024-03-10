@@ -8,7 +8,7 @@ export function createStore<S, A, G>(
     Set<(newValue: any, oldValue?: any) => void>
   > = {};
 
-  const state = new Proxy(options.state() as object, {
+  const state = new Proxy(options.state as object, {
     set(obj, prop, value) {
       const oldValue = (obj as S)[prop as keyof S];
       (obj as S)[prop as keyof S] = value;

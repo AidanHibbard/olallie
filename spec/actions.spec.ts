@@ -2,9 +2,9 @@ import { expect, it, describe } from 'vitest';
 import { createStore } from '../src/index';
 
 const actionsStore = createStore({
-  state: () => ({
+  state: {
     count: 1,
-  }),
+  },
   actions: {
     multiply(value: number) {
       this.count = this.count * value;

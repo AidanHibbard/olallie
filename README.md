@@ -5,8 +5,6 @@
 ![NPM Downloads](https://img.shields.io/npm/dw/olallie)
 ![Codecov](https://img.shields.io/codecov/c/github/aidanhibbard/olallie)
 
-
-
 ## Background
 
 Built to be a lightweight state management tool for framework-less projects.

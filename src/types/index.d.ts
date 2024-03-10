@@ -1,5 +1,5 @@
 export interface StoreOptions<S, A, G> {
-  state: () => S;
+  state: S;
   actions?: A & ThisType<S & A & G>;
   getters?: { [K in keyof G]: (state: S) => G[K] };
 }
