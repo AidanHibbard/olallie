@@ -6,7 +6,7 @@ outline: deep
 ## 0.0.6 -> 0.0.7
 
 - State
-  - State is now defined with an object, rather than arrow function.
+  - State is now defined with an object, rather than an arrow function.
 
   ```ts
   // 0.0.6 OLD
