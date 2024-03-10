@@ -29,7 +29,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/AidanHibbard/Olallie' }
+      { icon: 'github', link: 'https://github.com/AidanHibbard/olallie' }
     ]
   }
 })

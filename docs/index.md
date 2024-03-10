@@ -12,7 +12,7 @@ hero:
       link: /getting-started
     - theme: alt
       text: GitHub
-      link: https://github.com/AidanHibbard/Olallie
+      link: https://github.com/AidanHibbard/olallie
 
 features:
   - title: Type Safe
