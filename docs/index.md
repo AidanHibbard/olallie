@@ -20,4 +20,3 @@ features:
   - title: Tiny
     details: Minimal JavaScript, and no dependencies.
 ---
-

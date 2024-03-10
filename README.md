@@ -3,7 +3,8 @@
 ![GitHub Actions Workflow Status](https://github.com/AidanHibbard/olallie/actions/workflows/spec.yml/badge.svg?branch=main)
 ![NPM License](https://img.shields.io/npm/l/olallie)
 ![NPM Downloads](https://img.shields.io/npm/dw/olallie)
-![Codecov](https://img.shields.io/codecov/c/github/aidanhibbard/olallie)
+![NPM Version](https://img.shields.io/npm/v/olallie)
+![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/olallie)
 
 ## Background
 
