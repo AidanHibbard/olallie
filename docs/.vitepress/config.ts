@@ -12,7 +12,6 @@ export default defineConfig({
       { text: 'Upgrading', link: '/upgrade-guide' },
       { text: 'API', link: '/api-reference' },
     ],
-
     sidebar: [
       {
         text: 'Usage',
