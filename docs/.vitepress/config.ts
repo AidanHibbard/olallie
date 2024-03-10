@@ -5,6 +5,21 @@ export default defineConfig({
   base: '/olallie/',
   title: "Olallie",
   description: "Simple state management",
+  // https://vitepress.dev/reference/site-config#example-using-google-analytics
+  head: [
+    [
+      'script',
+      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-KC2VRE76BV' }
+    ],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-KC2VRE76BV');`
+    ]
+  ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
@@ -26,9 +41,12 @@ export default defineConfig({
         ]
       },
     ],
-
     socialLinks: [
       { icon: 'github', link: 'https://github.com/AidanHibbard/olallie' }
-    ]
-  }
+    ],
+    editLink: {
+      pattern: 'https://github.com/AidanHibbard/olallie/edit/main/docs/:path',
+      text: 'Suggest changes to this page',
+    },
+  },
 })
