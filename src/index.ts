@@ -10,8 +10,8 @@ export function createStore<S extends object, A, G>(
 
   const state = new Proxy(options.state, {
     set(obj, prop, value) {
-      const oldValue = (obj as S)[prop as keyof S];
-      (obj as S)[prop as keyof S] = value;
+      const oldValue = obj[prop as keyof S];
+      obj[prop as keyof S] = value;
       triggerListeners(prop as keyof S, value, oldValue);
       return true;
     },
@@ -23,7 +23,7 @@ export function createStore<S extends object, A, G>(
     if (Object.hasOwn(options.getters, key)) {
       const getter = options.getters[key];
       Object.defineProperty(state, key, {
-        get: () => getter(state as S),
+        get: () => getter(state),
         enumerable: true,
       });
     }
