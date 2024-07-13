@@ -1,3 +1,17 @@
+export interface CustomEventListener<S, K extends keyof S> extends EventListener {
+  detail: {
+    newValue: S[K];
+    oldValue: S[K];
+  };
+}
+
+export interface CustomEventListenerObject<S, K extends keyof S> extends EventListenerObject {
+  detail: {
+    newValue: S[K];
+    oldValue: S[K];
+  };
+}
+
 export interface StoreOptions<S extends object, A, G> {
   state: S;
   actions?: A & ThisType<S & A & G>;
@@ -9,6 +23,7 @@ export type Store<S, A, G> = S &
   G & {
     listen<K extends keyof S>(
       key: K,
-      callback: (newValue: S[K], oldValue: S[K]) => void,
-    ): { unlisten: () => boolean };
+      callback: CustomEventListener<S, K> | CustomEventListenerObject<S, K>,
+      options?: AddEventListenerOptions,
+    ): { unlisten: () => void; };
   };

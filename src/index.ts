@@ -1,18 +1,22 @@
-import type { StoreOptions, Store } from './types';
+import type { StoreOptions, Store, CustomEventListener } from './types';
 
 export function createStore<S extends object, A, G>(
   options: StoreOptions<S, A, G>,
 ): Store<S, A, G> {
-  const listeners: Record<
-    string,
-    Set<(newValue: any, oldValue?: any) => void>
-  > = {};
+  const target = new EventTarget();
 
   const state = new Proxy(options.state, {
-    set(obj, prop, value) {
+    set(obj, prop, newValue) {
       const oldValue = obj[prop as keyof S];
-      obj[prop as keyof S] = value;
-      triggerListeners(prop as keyof S, value, oldValue);
+      obj[prop as keyof S] = newValue;
+      target.dispatchEvent(
+        new CustomEvent(prop as string, {
+          detail: {
+            newValue,
+            oldValue,
+          },
+        },
+      ));
       return true;
     },
   });
@@ -33,31 +37,26 @@ export function createStore<S extends object, A, G>(
 
   store.listen = function <K extends keyof S>(
     key: K,
-    callback: (newValue: S[K], oldValue: S[K]) => void,
+    callback: CustomEventListener<S, K>,
+    options?: AddEventListenerOptions,
   ) {
-    if (!listeners[key as string]) {
-      listeners[key as string] = new Set();
-    }
-    listeners[key as string].add(callback);
+    target.addEventListener(key as string, callback, options);
     return {
       unlisten: () => {
-        return listeners[key as string].delete(callback);
+        return target.removeEventListener(key as string, callback, options);
       },
     };
   };
 
-  function triggerListeners<K extends keyof S>(
-    key: K,
-    newValue: S[K],
-    oldValue: S[K],
-  ) {
-    const listenerSet = listeners[key as string];
-    if (listenerSet) {
-      for (const callback of listenerSet) {
-        callback(newValue, oldValue);
-      }
-    }
-  }
-
   return store;
 }
+
+const store = createStore({
+  state: {
+    test: 1
+  }
+})
+
+store.listen('test', )
+
+
