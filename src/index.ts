@@ -1,4 +1,4 @@
-import type { StoreOptions, Store, CustomEventListener } from './types';
+import type { StoreOptions, Store, StoreEvent } from './types';
 
 export function createStore<S extends object, A, G>(
   options: StoreOptions<S, A, G>,
@@ -37,26 +37,16 @@ export function createStore<S extends object, A, G>(
 
   store.listen = function <K extends keyof S>(
     key: K,
-    callback: CustomEventListener<S, K>,
+    callback: (event: StoreEvent<S, K>) => void,
     options?: AddEventListenerOptions,
   ) {
-    target.addEventListener(key as string, callback, options);
+    target.addEventListener(key as string, callback as EventListener, options);
     return {
       unlisten: () => {
-        return target.removeEventListener(key as string, callback, options);
+        return target.removeEventListener(key as string, callback as EventListener, options);
       },
     };
   };
 
   return store;
 }
-
-const store = createStore({
-  state: {
-    test: 1
-  }
-})
-
-store.listen('test', )
-
-
