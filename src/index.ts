@@ -6,17 +6,18 @@ export function createStore<S extends object, A, G>(
   const target = new EventTarget();
 
   const state = new Proxy(options.state, {
-    set(obj, prop, newValue) {
-      const oldValue = obj[prop as keyof S];
-      obj[prop as keyof S] = newValue;
+    set(obj, prop, value) {
+      const stateKey = prop as keyof S;
+      const oldValue = obj[stateKey];
+      obj[prop as keyof S] = value;
       target.dispatchEvent(
         new CustomEvent(prop as string, {
           detail: {
-            newValue,
+            value,
             oldValue,
-          },
-        },
-      ));
+          } satisfies StoreEvent<S, typeof stateKey>['detail'],
+        }),
+      );
       return true;
     },
   });
@@ -43,7 +44,11 @@ export function createStore<S extends object, A, G>(
     target.addEventListener(key as string, callback as EventListener, options);
     return {
       unlisten: () => {
-        return target.removeEventListener(key as string, callback as EventListener, options);
+        target.removeEventListener(
+          key as string,
+          callback as EventListener,
+          options,
+        );
       },
     };
   };
