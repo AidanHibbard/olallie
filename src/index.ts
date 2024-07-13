@@ -9,7 +9,7 @@ export default function createStore<S extends object, A, G>(
     set(obj, prop, value) {
       const stateKey = prop as keyof S;
       const oldValue = obj[stateKey];
-      obj[prop as keyof S] = value;
+      obj[stateKey] = value;
       target.dispatchEvent(
         new CustomEvent(prop as string, {
           detail: {
