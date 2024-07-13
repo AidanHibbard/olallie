@@ -199,7 +199,7 @@ const listener = store.listen('count', ({ detail, timeStamp }) => {
   console.log('%j', {
     newValue: detail.value,
     oldValue: detail.oldValue,
-    receivedAt: timeStamp
+    timeStamp
   });
 });
 
