@@ -1,6 +1,6 @@
 import type { StoreOptions, Store, StoreEvent } from './types';
 
-export function createStore<S extends object, A, G>(
+export default function createStore<S extends object, A, G>(
   options: StoreOptions<S, A, G>,
 ): Store<S, A, G> {
   const target = new EventTarget();

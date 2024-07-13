@@ -5,7 +5,6 @@ layout: home
 hero:
   name: "Olallie"
   text: "Simple state management"
-  tagline: Manage state with type safety
   actions:
     - theme: brand
       text: Getting Started

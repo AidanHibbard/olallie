@@ -6,7 +6,7 @@ outline: deep
 Actions are muatators of the state, and can access the whole store through `this` with automatic type detection.
 
 ```ts
-import { createStore } from 'olallie';
+import createStore from 'olallie';
 
 const store = createStore({
   state: {

@@ -3,12 +3,14 @@ outline: deep
 ---
 # Listeners
 
-Listeners help keep your code reactive, and are meant to watch individual items in your state. Listeners will provide a list of keys for you to select from the store state, and infer the type of the value.
+## Creating a listener
 
-#### Example
+Listeners add a touch of reactivity to your code, and use [EventTarget](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) under the hood.
+
+If the [proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) in front of your stores state detects a change to a keys value; a [typed Custom Event](./api-reference.md#storeevent) will be dispatched.
 
 ```typescript
-import { createStore } from 'olallie';
+import createStore from 'olallie';
 
 const store = createStore({
   state: {
@@ -16,20 +18,29 @@ const store = createStore({
   },
 });
 
-// (parameter) newValue: number, (parameter) oldValue: number
-const listener = store.listen('count', (newValue, oldValue) => {
-  console.log(`New value: ${newValue}, Old value: ${oldValue}`);
+// (parameter) event: StoreEvent<S, K>
+const listener = store.listen('count', ({ detail, timeStamp }) => {
+  // Values are type-safe
+  /*
+  param (detail): {
+    value: number;
+    oldValue: number;
+  }
+  */
+  console.log('%j', {
+    newValue: detail.value,
+    oldValue,
+    receivedAt: timeStamp
+  });
 });
 
 store.count++;
 ```
 
-To disable the listener, call `unlisten()`. This method returns a boolean letting you know if the listener has already been removed.
+## Removing a listener
 
-#### Example
+Removing a listener calls `removeEventListener()` on the stores [EventTarget](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget).
 
 ```typescript
-listener.unlisten(); // true
-// Attempting to unlisten a second time returns false
-listener.unlisten(); // false
+listener.unlisten();
 ```

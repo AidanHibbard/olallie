@@ -15,7 +15,7 @@ outline: deep
 
 ```ts
 // Import createStore
-import { createStore } from 'olallie';
+import createStore from 'olallie';
 
 const store = createStore({
   state: {
@@ -30,7 +30,7 @@ const store = createStore({
   },
   getters: {
     // State is automatically typed
-    doubled: (state) => this.count * 2,
+    doubled: (state) => state.count * 2,
   },
 });
 

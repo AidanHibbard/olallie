@@ -8,7 +8,7 @@ State is the only required key in the store, it's an object holding your stores 
 #### example
 ```typescript
 // Import Olallie
-import { createStore } from 'olallie';
+import createStore from 'olallie';
 
 // Setup the store
 const store = createStore({
@@ -28,7 +28,7 @@ Types in your store should be automatically detected. However, there may be time
 #### Example
 ```typescript
 // Import Olallie
-import { createStore } from 'olallie';
+import createStore from 'olallie';
 
 interface State {
   status: 'Queued' | 'Processing' | 'Completed';

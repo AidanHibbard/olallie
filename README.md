@@ -23,7 +23,7 @@ The name Olallie comes from a [lake in Oregon.](https://www.fs.usda.gov/recarea/
 ## Example usage
 
 ```ts
-import { createStore } from 'olallie';
+import createStore from 'olallie';
 
 const store = createStore({
   state: {

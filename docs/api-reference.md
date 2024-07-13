@@ -12,7 +12,7 @@ createStore<S, A, G>(options: StoreOptions<S, A, G>): Store<S, A, G>
 Instantiates a new store.
 
 ```ts
-const store = createStore({ ...storeOptions });
+const store = createStore({ state: {}, actions: {}, getters: {} });
 ```
 
 ## Store Options
@@ -38,15 +38,31 @@ const store = createStore({ ...storeOptions });
 
   Add getters to the store that return computed state values. Read more about them in the [documentation](/getters).
 
-## `#listen`
+## Store methods
 
-- Store method
+### `#listen`
 
-  Select a key of the state, listen to its new, and (optionally) previous values. Read more in the listeners [documentation](/listeners).
+  Select a key of the state, listen to its new, and previous value. Read more in the listeners [documentation](/listeners).
 
-  ```ts
+  ```typescript
   function listen<K extends keyof S>(
     key: K,
-    callback: (newValue: S[K], oldValue: S[K]) => void,
-  ): { unlisten: () => boolean };
+    callback: (event: StoreEvent<S, K>) => void,
+    options?: AddEventListenerOptions,
+  ): { unlisten: () => void };
+  ```
+
+## Custom types
+
+### StoreEvent
+
+  Extends [CustomEvent](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent), with the event detail containing new, and previous values for the [listened to key](./listeners.md).
+
+  ```typescript
+  interface StoreEvent<S, K extends keyof S> extends CustomEvent {
+    detail: {
+      value: S[K];
+      oldValue: S[K];
+    };
+  }
   ```

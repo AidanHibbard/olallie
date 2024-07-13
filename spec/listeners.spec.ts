@@ -1,5 +1,5 @@
 import { expect, it, describe } from 'vitest';
-import { createStore } from '../src/index';
+import createStore from '../src';
 
 const listenersStore = createStore({
   state: {
