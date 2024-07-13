@@ -17,7 +17,7 @@ outline: deep
   ```
 
 - Listeners
-  - Listeners now use EventTarget, listeners will receive a [StoreEvent](./api-reference.md#storeevent) on state change.
+  - [Listeners](./listeners.md) now use [EventTarget](https://developer.mozilla.org/en-US/docs/Web/API/Event/target), listeners will receive a [StoreEvent](./api-reference.md#storeevent) on state change.
 
   ```typescript
   // 0.0.7 OLD
