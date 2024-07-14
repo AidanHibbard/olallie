@@ -16,7 +16,7 @@ const store = createStore({
   },
   actions: {
     async fetchPreferences() {
-      const data = await fetch(`/preferences/${this.fullName}`);
+      const data = await fetch(new URL(`https://${process.env.baseURL}/prefs/${this.fullName}`));
       this.setPreferences(data);
     },
     setPreferences(options) {
