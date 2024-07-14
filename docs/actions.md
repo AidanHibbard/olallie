@@ -16,15 +16,15 @@ const store = createStore({
   },
   actions: {
     async fetchPreferences() {
-      const data = await fetch(new URL(`https://${process.env.baseURL}/prefs/${this.fullName}`));
-      this.setPreferences(data);
+      const res = await fetch(new URL(`https://${process.env.baseURL}/prefs/${this.fullName}`));
+      this.setPreferences(res.options);
     },
     setPreferences(options) {
       this.userPreferences = options;
     },
   },
   getters: {
-    fullName: (state) => `${store.firstName} ${store.lastName}`,
+    fullName: (state) => `${state.firstName} ${state.lastName}`,
   },
 });
 
