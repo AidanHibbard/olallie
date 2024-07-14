@@ -34,7 +34,7 @@ const listener = store.listen('count', ({ detail, timeStamp }) => {
     oldValue: detail.oldValue,
     timeStamp
   });
-}, false;
+}, false);
 
 store.count++;
 ```
