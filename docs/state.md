@@ -44,3 +44,7 @@ const store = createStore({
 // Type '"test"' is not assignable to type '"Queued" | "Processing" | "Completed"'
 store.status = 'test';
 ```
+
+## Subscribing to changes
+
+Looking to watch for changes to your stores state? Read about [Listeners](./listeners.md).
