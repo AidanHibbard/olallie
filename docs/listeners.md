@@ -9,6 +9,8 @@ Listeners add a touch of reactivity to your code, and use [EventTarget](https://
 
 If the [proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) in front of your stores state detects a change to a keys value; a [typed Custom Event](./api-reference.md#storeevent) will be dispatched.
 
+You can also pass listener options, see the [API reference](./api-reference.md#listen).
+
 ```typescript
 import createStore from 'olallie';
 
@@ -32,7 +34,7 @@ const listener = store.listen('count', ({ detail, timeStamp }) => {
     oldValue: detail.oldValue,
     timeStamp
   });
-});
+}, false;
 
 store.count++;
 ```

@@ -48,7 +48,7 @@ const store = createStore({ state: {}, actions: {}, getters: {} });
   function listen<K extends keyof S>(
     key: K,
     callback: (event: StoreEvent<S, K>) => void,
-    options?: AddEventListenerOptions,
+    options?: AddEventListenerOptions | boolean,
   ): { unlisten: () => void };
   ```
 

@@ -17,6 +17,6 @@ export type Store<S, A, G> = S &
     listen<K extends keyof S>(
       key: K,
       callback: (event: StoreEvent<S, K>) => void,
-      options?: AddEventListenerOptions,
+      options?: AddEventListenerOptions | boolean,
     ): { unlisten: () => void };
   };

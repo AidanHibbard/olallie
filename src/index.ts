@@ -39,7 +39,7 @@ export default function createStore<S extends object, A, G>(
   store.listen = function <K extends keyof S>(
     key: K,
     callback: (event: StoreEvent<S, K>) => void,
-    options?: AddEventListenerOptions,
+    options?: AddEventListenerOptions | boolean,
   ) {
     target.addEventListener(key as string, callback as EventListener, options);
     return {

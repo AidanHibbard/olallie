@@ -19,13 +19,21 @@ describe('Store listeners', () => {
   });
   describe('Listeners', () => {
     let oldValue: number;
-    const listener = listenersStore.listen('count', ({ detail }) => {
-      oldValue = detail.oldValue;
-      listenersStore.listenerCount = detail.value;
-    });
-    listenersStore.listen('count', ({ detail }) => {
-      listenersStore.listenerTwoCount = detail.value;
-    });
+    const listener = listenersStore.listen(
+      'count',
+      ({ detail }) => {
+        oldValue = detail.oldValue;
+        listenersStore.listenerCount = detail.value;
+      },
+      false,
+    );
+    listenersStore.listen(
+      'count',
+      ({ detail }) => {
+        listenersStore.listenerTwoCount = detail.value;
+      },
+      false,
+    );
     it('Supports multiple listeners', () => {
       listenersStore.count++;
       expect(oldValue).toEqual(0);

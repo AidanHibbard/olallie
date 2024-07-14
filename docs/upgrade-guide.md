@@ -5,7 +5,7 @@ outline: deep
 
 ## 0.0.7 -> 0.0.8
 
-- createStore
+- [createStore](./getting-started.md)
   - createStore is now a default export
 
   ```typescript
@@ -25,7 +25,7 @@ outline: deep
   store.listen('key', (newValue, oldValue) => {});
 
   // 0.0.8 NEW
-  store.listen('key', ({ detail: { value, oldValue } }) => {});
+  store.listen('key', ({ detail: { value, oldValue } }) => {}, AddEventListenerOptions | boolean);
   ```
 
 ## 0.0.6 -> 0.0.7
