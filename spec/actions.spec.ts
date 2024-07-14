@@ -1,5 +1,5 @@
 import { expect, it, describe } from 'vitest';
-import { createStore } from '../src/index';
+import createStore from '../src';
 
 const actionsStore = createStore({
   state: {
@@ -18,7 +18,7 @@ const actionsStore = createStore({
       return await new Promise((resolve) => {
         setTimeout(() => {
           resolve(true);
-        }, 1);
+        }, 0.1);
       });
     },
     actionCaller() {

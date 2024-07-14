@@ -1,3 +1,7 @@
+# 0.0.8
+- Change listeners to use EventTarget
+- Update docs
+
 # 0.0.7
 - Update state to take an object rather than function
 - Update docs

@@ -14,16 +14,35 @@ The name Olallie comes from a [lake in Oregon.](https://www.fs.usda.gov/recarea/
 
 ## Quick links
 
+- [Installation](#installation)
 - [State](#state)
 - [Actions](#actions)
 - [Getters](#getters)
 - [Listeners](#listeners)
 - [Upgrade Guide](https://aidanhibbard.github.io/olallie/upgrade-guide.html)
 
+## Installation
+
+- Install the module
+
+  ```bash
+  npm i olallie
+  ```
+
+- Import `createStore`
+
+  ```ts
+  import createStore from 'olallie';
+  // or
+  const createStore = require('olallie');
+  ```
+
 ## Example usage
 
 ```ts
-import { createStore } from 'olallie';
+import createStore from 'olallie';
+// or
+// const createStore = require('olallie');
 
 const store = createStore({
   state: {
@@ -48,14 +67,6 @@ store.add(1); // 1
 const count = store.count; // 1
 const doubled = store.doubled; // 2
 ```
-
-## Installation
-
-- Install the module
-
-  ```bash
-  npm i olallie
-  ```
 
 ## Documentation
 
@@ -176,7 +187,7 @@ const name = store.fullName; // "John Doe"
 
 ### Listeners
 
-Listeners provide a helpful bit of reactivity with your store. They work similarly to Vue watchers, you can listen for the new value, and previous value.
+Listeners provide a helpful bit of reactivity with your store. They use the [Event Target API](https://developer.mozilla.org/en-US/docs/Web/API/Event/target) under the hood, and will dispatch a [Custom Event](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent) when a state value is changed.
 
 The `listen()` method will provide a list of your stores state keys to choose from, and automatically infer the value for you.
 
@@ -187,19 +198,29 @@ const store = createStore({
   },
 });
 
-// (parameter) newValue: number, (parameter) oldValue: number
-const listener = store.listen('count', (newValue, oldValue) => {
-  console.log(`New value: ${newValue}, Old value: ${oldValue}`);
-});
+// (parameter) event: StoreEvent<S, K>
+const listener = store.listen('count', ({ detail, timeStamp }) => {
+  // Values are type-safe
+  /*
+  param (detail): {
+    value: number;
+    oldValue: number;
+  }
+  */
+  console.log('%j', {
+    newValue: detail.value,
+    oldValue: detail.oldValue,
+    timeStamp
+  });
+}, false);
 
 store.count++;
 ```
 
-Listeners can be removed by calling `unlisten()` which will return a boolean.
+Listeners can be removed by calling `unlisten()`.
 
 ```ts
-listener.unlisten(); // true
-listener.unlisten(); // false - Already been removed 
+listener.unlisten();
 ```
 
 ## Contributing

@@ -1,18 +1,23 @@
-import type { StoreOptions, Store } from './types';
+import type { StoreOptions, Store, StoreEvent } from './types';
 
-export function createStore<S extends object, A, G>(
+export default function createStore<S extends object, A, G>(
   options: StoreOptions<S, A, G>,
 ): Store<S, A, G> {
-  const listeners: Record<
-    string,
-    Set<(newValue: any, oldValue?: any) => void>
-  > = {};
+  const target = new EventTarget();
 
   const state = new Proxy(options.state, {
     set(obj, prop, value) {
-      const oldValue = obj[prop as keyof S];
-      obj[prop as keyof S] = value;
-      triggerListeners(prop as keyof S, value, oldValue);
+      const stateKey = prop as keyof S;
+      const oldValue = obj[stateKey];
+      obj[stateKey] = value;
+      target.dispatchEvent(
+        new CustomEvent(prop as string, {
+          detail: {
+            value,
+            oldValue,
+          } as StoreEvent<S, typeof stateKey>['detail'],
+        }),
+      );
       return true;
     },
   });
@@ -33,31 +38,20 @@ export function createStore<S extends object, A, G>(
 
   store.listen = function <K extends keyof S>(
     key: K,
-    callback: (newValue: S[K], oldValue: S[K]) => void,
+    callback: (event: StoreEvent<S, K>) => void,
+    options?: AddEventListenerOptions | boolean,
   ) {
-    if (!listeners[key as string]) {
-      listeners[key as string] = new Set();
-    }
-    listeners[key as string].add(callback);
+    target.addEventListener(key as string, callback as EventListener, options);
     return {
       unlisten: () => {
-        return listeners[key as string].delete(callback);
+        target.removeEventListener(
+          key as string,
+          callback as EventListener,
+          options,
+        );
       },
     };
   };
-
-  function triggerListeners<K extends keyof S>(
-    key: K,
-    newValue: S[K],
-    oldValue: S[K],
-  ) {
-    const listenerSet = listeners[key as string];
-    if (listenerSet) {
-      for (const callback of listenerSet) {
-        callback(newValue, oldValue);
-      }
-    }
-  }
 
   return store;
 }

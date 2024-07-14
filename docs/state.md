@@ -8,7 +8,7 @@ State is the only required key in the store, it's an object holding your stores 
 #### example
 ```typescript
 // Import Olallie
-import { createStore } from 'olallie';
+import createStore from 'olallie';
 
 // Setup the store
 const store = createStore({
@@ -17,6 +17,7 @@ const store = createStore({
   },
 });
 
+// (param) count: number;
 store.count++;
 console.log(store.count); // 2
 ```
@@ -28,7 +29,7 @@ Types in your store should be automatically detected. However, there may be time
 #### Example
 ```typescript
 // Import Olallie
-import { createStore } from 'olallie';
+import createStore from 'olallie';
 
 interface State {
   status: 'Queued' | 'Processing' | 'Completed';
@@ -43,3 +44,7 @@ const store = createStore({
 // Type '"test"' is not assignable to type '"Queued" | "Processing" | "Completed"'
 store.status = 'test';
 ```
+
+## Subscribing to changes
+
+Looking to watch for changes to your stores state? Read about [Listeners](./listeners.md).

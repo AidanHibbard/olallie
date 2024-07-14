@@ -1,5 +1,5 @@
 import { expect, it, describe } from 'vitest';
-import { createStore } from '../src/index';
+import createStore from '../src';
 
 const listenersStore = createStore({
   state: {
@@ -19,13 +19,21 @@ describe('Store listeners', () => {
   });
   describe('Listeners', () => {
     let oldValue: number;
-    const listener = listenersStore.listen('count', (value, old) => {
-      oldValue = old;
-      listenersStore.listenerCount = value;
-    });
-    const listenerTwo = listenersStore.listen('count', (value) => {
-      listenersStore.listenerTwoCount = value;
-    });
+    const listener = listenersStore.listen(
+      'count',
+      ({ detail }) => {
+        oldValue = detail.oldValue;
+        listenersStore.listenerCount = detail.value;
+      },
+      false,
+    );
+    listenersStore.listen(
+      'count',
+      ({ detail }) => {
+        listenersStore.listenerTwoCount = detail.value;
+      },
+      false,
+    );
     it('Supports multiple listeners', () => {
       listenersStore.count++;
       expect(oldValue).toEqual(0);
@@ -34,17 +42,11 @@ describe('Store listeners', () => {
       expect(listenersStore.listenerTwoCount).toEqual(1);
     });
     it('Supports removing specific listeners', () => {
-      expect(listener.unlisten()).toBeTruthy();
+      listener.unlisten();
       listenersStore.count++;
       expect(listenersStore.count).toEqual(2);
       expect(listenersStore.listenerCount).toEqual(1);
       expect(listenersStore.listenerTwoCount).toEqual(2);
-    });
-    it('Should return false if listener was already removed', () => {
-      expect(listener.unlisten()).toBeFalsy();
-    });
-    it('Returns true when removing another listener for the same key', () => {
-      expect(listenerTwo.unlisten()).toBeTruthy();
     });
   });
 });
