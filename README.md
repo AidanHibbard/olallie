@@ -14,11 +14,28 @@ The name Olallie comes from a [lake in Oregon.](https://www.fs.usda.gov/recarea/
 
 ## Quick links
 
+- [Installation](#installation)
 - [State](#state)
 - [Actions](#actions)
 - [Getters](#getters)
 - [Listeners](#listeners)
 - [Upgrade Guide](https://aidanhibbard.github.io/olallie/upgrade-guide.html)
+
+## Installation
+
+- Install the module
+
+  ```bash
+  npm i olallie
+  ```
+
+- Import `createStore`
+
+  ```ts
+  import createStore from 'olallie';
+  // or
+  const createStore = require('olallie');
+  ```
 
 ## Example usage
 
@@ -50,14 +67,6 @@ store.add(1); // 1
 const count = store.count; // 1
 const doubled = store.doubled; // 2
 ```
-
-## Installation
-
-- Install the module
-
-  ```bash
-  npm i olallie
-  ```
 
 ## Documentation
 

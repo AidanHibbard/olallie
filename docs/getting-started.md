@@ -11,6 +11,14 @@ outline: deep
   npm i olallie
   ```
 
+- Import `createStore`
+
+  ```ts
+  import createStore from 'olallie';
+  // or
+  const createStore = require('olallie');
+  ```
+
 ## Basic store
 
 All that's needed to get started is a state object.
