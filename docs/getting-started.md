@@ -40,7 +40,7 @@ store.count++
 console.log(store.count); // 1
 ```
 
-Although Olallie will infer the types in your stores state, however, you can add stricter types.
+Although Olallie will infer the types in your stores state, you can add stricter types.
 
 ```ts
 interface State {
