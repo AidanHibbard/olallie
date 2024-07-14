@@ -15,7 +15,7 @@ export default function createStore<S extends object, A, G>(
           detail: {
             value,
             oldValue,
-          } satisfies StoreEvent<S, typeof stateKey>['detail'],
+          } as StoreEvent<S, typeof stateKey>['detail'],
         }),
       );
       return true;
