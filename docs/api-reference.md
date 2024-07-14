@@ -22,27 +22,27 @@ const store = createStore({ state: {}, actions: {}, getters: {} });
 - Type: `S extends object`
 - Required: true
 
-  State is the only required key, and is an object representing your stores initial state. You can read more about state in its [documentation](/state).
+  State is the only required key, and is an object representing your stores initial state. You can read more about state in its [documentation](./state).
 
 ### Actions
 
 - Type: `{ A & ThisType<S & A & G> }`
 - Required: false
 
-  Add methods to the store that mutate, and return state values. You can read more about actions in their [documentation](/actions).
+  Add methods to the store that mutate, and return state values. You can read more about actions in their [documentation](./actions).
 
 ### Getters
 
 - Type: `{ [K in keyof G]: (state: S) => G[K] }`
 - Required: false
 
-  Add getters to the store that return computed state values. Read more about them in the [documentation](/getters).
+  Add getters to the store that return computed state values. Read more about them in the [documentation](./getters).
 
 ## Store methods
 
 ### `#listen`
 
-  Select a key of the state, listen to its new, and previous value. Read more in the listeners [documentation](/listeners).
+  Select a key of the state, listen to its new, and previous value. Read more in the listeners [documentation](./listeners).
 
   ```typescript
   function listen<K extends keyof S>(
