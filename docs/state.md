@@ -17,6 +17,7 @@ const store = createStore({
   },
 });
 
+// (param) count: number;
 store.count++;
 console.log(store.count); // 2
 ```

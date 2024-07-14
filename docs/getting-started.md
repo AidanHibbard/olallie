@@ -13,30 +13,43 @@ outline: deep
 
 ## Basic store
 
+All that's needed to get started is a state object.
+
 ```ts
 // Import createStore
 import createStore from 'olallie';
+// or
+// const createStore = require('olallie');
+
+// A basic store only requires a state
+const store = createStore({
+  state: { count: 0 },
+});
+
+console.log(store.count); // 0
+// (param) count: number;
+store.count++
+console.log(store.count); // 1
+```
+
+Although Olallie will infer the types in your stores state, however, you can add stricter types.
+
+```ts
+interface State {
+  status: 'Loading' | 'Finished';
+}
 
 const store = createStore({
   state: {
-    count: 1,
-  },
-  actions: {
-    double() {
-      // Actions can access state, getters, and actions
-      // this is automatically typed
-      this.count = this.doubled;
-    },
-  },
-  getters: {
-    // State is automatically typed
-    doubled: (state) => state.count * 2,
-  },
+    status: 'Loading',
+  } as State,
 });
 
-// Access state, actions, and getters from the store
-// Types are inferred
-console.log(store.count); // 1
-console.log(store.double) // 2
-console.log(store.doubled) // 4
+// Type '"Test"' is not assignable to type '"Loading" | "Finished"'.
+store.status = 'Test';
 ```
+
+Want to go further? [Read more about state](./state.md).
+
+
+
