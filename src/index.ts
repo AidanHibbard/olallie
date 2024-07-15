@@ -9,7 +9,7 @@ export default function createStore<S extends object, A, G>(
     set(obj, prop, value) {
       const stateKey = prop as keyof S;
       const oldValue = obj[stateKey];
-      obj[stateKey] = value;
+      const result = Reflect.set(obj, prop, value);
       target.dispatchEvent(
         new CustomEvent(prop as string, {
           detail: {
@@ -18,7 +18,7 @@ export default function createStore<S extends object, A, G>(
           } as StoreEvent<S, typeof stateKey>['detail'],
         }),
       );
-      return true;
+      return result;
     },
   });
 
@@ -36,11 +36,11 @@ export default function createStore<S extends object, A, G>(
 
   const store = Object.assign(state, actions) as Store<S, A, G>;
 
-  store.listen = function <K extends keyof S>(
+  store.listen = <K extends keyof S>(
     key: K,
     callback: (event: StoreEvent<S, K>) => void,
     options?: AddEventListenerOptions | boolean,
-  ) {
+  ) => {
     target.addEventListener(key as string, callback as EventListener, options);
     return {
       unlisten: () => {
