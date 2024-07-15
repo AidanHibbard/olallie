@@ -1,4 +1,4 @@
-import type { StoreOptions, Store, StoreEvent } from './types';
+import type { StoreOptions, Store, StoreEvent, ListenerOptions } from './types';
 
 export default function createStore<S extends object, A, G>(
   options: StoreOptions<S, A, G>,
@@ -39,7 +39,7 @@ export default function createStore<S extends object, A, G>(
   store.listen = <K extends keyof S>(
     key: K,
     callback: (event: StoreEvent<S, K>) => void,
-    options?: AddEventListenerOptions | boolean,
+    options?: ListenerOptions,
   ) => {
     target.addEventListener(key as string, callback as EventListener, options);
     return {
