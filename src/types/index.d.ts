@@ -1,4 +1,5 @@
-export interface StoreEvent<S, K extends keyof S> extends CustomEvent {
+export interface StoreEvent<S extends object, K extends keyof S>
+  extends CustomEvent {
   detail: {
     value: S[K];
     oldValue: S[K];
@@ -13,7 +14,7 @@ export interface StoreOptions<S extends object, A, G> {
 
 export type ListenerOptions = AddEventListenerOptions | boolean;
 
-export type Store<S, A, G> = S &
+export type Store<S extends object, A, G> = S &
   A &
   G & {
     listen<K extends keyof S>(
