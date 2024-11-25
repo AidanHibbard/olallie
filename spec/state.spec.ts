@@ -8,12 +8,12 @@ const stateStore = createStore({
 });
 
 describe('Store state', () => {
-  describe('Initial State', () => {
+  describe('Initial state', () => {
     it('Should have default values', () => {
       expect(stateStore.count).toEqual(1);
     });
   });
-  describe('State', () => {
+  describe('Updating state', () => {
     it('Should be usable from store instance', () => {
       stateStore.count++;
       expect(stateStore.count).toEqual(2);
