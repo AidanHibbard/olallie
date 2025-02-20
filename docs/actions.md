@@ -1,6 +1,7 @@
 ---
 outline: deep
 ---
+
 # Actions
 
 Actions are muatators of the state, and can access the whole store through `this` with automatic type detection.
@@ -12,11 +13,13 @@ const store = createStore({
   state: {
     firstName: 'John',
     lastName: 'Doe',
-    userPreferences: {}
+    userPreferences: {},
   },
   actions: {
     async fetchPreferences() {
-      const res = await fetch(new URL(`https://${process.env.baseURL}/prefs/${this.fullName}`));
+      const res = await fetch(
+        new URL(`https://${process.env.baseURL}/prefs/${this.fullName}`),
+      );
       this.setPreferences(res.options);
     },
     setPreferences(options) {
@@ -30,4 +33,3 @@ const store = createStore({
 
 await store.fetchPreferences();
 ```
-

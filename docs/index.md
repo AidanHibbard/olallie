@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "Olallie"
-  text: "Simple state management"
+  name: 'Olallie'
+  text: 'Simple state management'
   actions:
     - theme: brand
       text: Getting Started

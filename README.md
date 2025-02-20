@@ -46,7 +46,7 @@ import createStore from 'olallie';
 
 const store = createStore({
   state: {
-    count: 0
+    count: 0,
   },
   actions: {
     add(value: number) {
@@ -110,7 +110,7 @@ Actions should update, and, or return state values. They have access to state, g
 ```ts
 const store = createStore({
   state: {
-    count: 0
+    count: 0,
   },
   actions: {
     add(value: number) {
@@ -146,7 +146,7 @@ const store = createStore({
         setTimeout(() => {
           data = {
             id: userId,
-            name: 'John Doe'
+            name: 'John Doe',
           };
           resolve(true);
         }, 1);
@@ -199,20 +199,24 @@ const store = createStore({
 });
 
 // (parameter) event: StoreEvent<S, K>
-const listener = store.listen('count', ({ detail, timeStamp }) => {
-  // Values are type-safe
-  /*
+const listener = store.listen(
+  'count',
+  ({ detail, timeStamp }) => {
+    // Values are type-safe
+    /*
   param (detail): {
     value: number;
     oldValue: number;
   }
   */
-  console.log('%j', {
-    newValue: detail.value,
-    oldValue: detail.oldValue,
-    timeStamp
-  });
-}, false);
+    console.log('%j', {
+      newValue: detail.value,
+      oldValue: detail.oldValue,
+      timeStamp,
+    });
+  },
+  false,
+);
 
 store.count++;
 ```
@@ -234,5 +238,3 @@ Follow the [contributor guidelines](.github/contributing.md) when opening a PR, 
 2. Install modules
 
 3. Run `spec` to lint & unit test
-
-

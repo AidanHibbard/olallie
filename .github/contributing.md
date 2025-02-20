@@ -15,12 +15,14 @@ If you come across a bug or unexpected behavior in Olallie, please help by submi
 1. **Search for Existing Issues:** Before creating a new issue, check if the problem has already been reported. If it has, you can contribute to the existing discussion.
 
 2. **Create a New Issue:**
-  - Clearly describe the issue, including steps to reproduce it.
-  - If applicable, attach relevant screenshots, or error log.
-  - Use the "Bug" issue template if available.
+
+- Clearly describe the issue, including steps to reproduce it.
+- If applicable, attach relevant screenshots, or error log.
+- Use the "Bug" issue template if available.
 
 3. **Create a Vitest Spec:**
-  - For bug reports, please create a [vitest spec](https://vitest.dev/) that reproduces the issue.
+
+- For bug reports, please create a [vitest spec](https://vitest.dev/) that reproduces the issue.
 
 ### Contributing Code
 
@@ -30,9 +32,9 @@ If you're interested in contributing code, follow these steps:
 
 2. **Create a New Branch:** Create a new branch for your changes.
 
-  ```bash
-  git checkout -b your-feature
-  ```
+```bash
+git checkout -b your-feature
+```
 
 3. **Make Changes:** Make your changes, and ensure that your code adheres to the project's coding standards.
 

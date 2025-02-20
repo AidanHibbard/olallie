@@ -1,6 +1,7 @@
 ---
 outline: deep
 ---
+
 # Listeners
 
 ## Creating a listener
@@ -21,20 +22,24 @@ const store = createStore({
 });
 
 // (parameter) event: StoreEvent<S, K>
-const listener = store.listen('count', ({ detail, timeStamp }) => {
-  // Values are type-safe
-  /*
+const listener = store.listen(
+  'count',
+  ({ detail, timeStamp }) => {
+    // Values are type-safe
+    /*
   param (detail): {
     value: number;
     oldValue: number;
   }
   */
-  console.log('%j', {
-    newValue: detail.value,
-    oldValue: detail.oldValue,
-    timeStamp
-  });
-}, false);
+    console.log('%j', {
+      newValue: detail.value,
+      oldValue: detail.oldValue,
+      timeStamp,
+    });
+  },
+  false,
+);
 
 store.count++;
 ```

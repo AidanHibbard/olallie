@@ -1,6 +1,7 @@
 ---
 outline: deep
 ---
+
 # Getting Started
 
 ## Installation
@@ -36,7 +37,7 @@ const store = createStore({
 
 console.log(store.count); // 0
 // (param) count: number;
-store.count++
+store.count++;
 console.log(store.count); // 1
 ```
 
@@ -58,6 +59,3 @@ store.status = 'Test';
 ```
 
 Want to go further? [Read more about state](./state.md).
-
-
-

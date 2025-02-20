@@ -1,6 +1,7 @@
 ---
 outline: deep
 ---
+
 # API Reference
 
 ## `createStore`
@@ -42,27 +43,27 @@ const store = createStore({ state: {}, actions: {}, getters: {} });
 
 ### `#listen`
 
-  Select a key of the state, listen to its new, and previous value. Read more in the listeners [documentation](./listeners).
+Select a key of the state, listen to its new, and previous value. Read more in the listeners [documentation](./listeners).
 
-  ```typescript
-  function listen<K extends keyof S>(
-    key: K,
-    callback: (event: StoreEvent<S, K>) => void,
-    options?: AddEventListenerOptions | boolean,
-  ): { unlisten: () => void };
-  ```
+```typescript
+function listen<K extends keyof S>(
+  key: K,
+  callback: (event: StoreEvent<S, K>) => void,
+  options?: AddEventListenerOptions | boolean,
+): { unlisten: () => void };
+```
 
 ## Custom types
 
 ### StoreEvent
 
-  Extends [CustomEvent](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent), with the event detail containing new, and previous values for the [listened to key](./listeners.md).
+Extends [CustomEvent](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent), with the event detail containing new, and previous values for the [listened to key](./listeners.md).
 
-  ```typescript
-  interface StoreEvent<S, K extends keyof S> extends CustomEvent {
-    detail: {
-      value: S[K];
-      oldValue: S[K];
-    };
-  }
-  ```
+```typescript
+interface StoreEvent<S, K extends keyof S> extends CustomEvent {
+  detail: {
+    value: S[K];
+    oldValue: S[K];
+  };
+}
+```
