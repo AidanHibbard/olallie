@@ -12,7 +12,7 @@ outline: deep
 
   ```typescript
   // 0.0.7 OLD
-  import createStore from 'olallie';
+  import { createStore } from 'olallie';
 
   // 0.0.8 NEW
   import createStore from 'olallie';
