@@ -1,8 +1,18 @@
-import type { StoreOptions, Store, StoreEvent, ListenerOptions } from './types';
+import {
+  StorePlugins,
+  StoreOptions,
+  Store,
+  PluginReturns,
+  StoreEvent,
+  ListenerOptions,
+} from './types';
 
-export default function createStore<S extends object, A, G>(
-  options: StoreOptions<S, A, G>,
-): Store<S, A, G> {
+export default function createStore<
+  S extends object,
+  A,
+  G,
+  P extends StorePlugins,
+>(options: StoreOptions<S, A, G, P>): Store<S & PluginReturns<P>, A, G> {
   const target = new EventTarget();
 
   const state = new Proxy(options.state, {
@@ -36,9 +46,21 @@ export default function createStore<S extends object, A, G>(
 
   const store = Object.assign(state, actions) as Store<S, A, G>;
 
-  store.listen = <K extends keyof S>(
+  const pluginReturns = options.plugins?.map((plugin) => plugin(store)) ?? [];
+  const finalPluginReturns: Record<string, any> = {};
+
+  for (const pluginReturn of pluginReturns) {
+    Object.assign(finalPluginReturns, pluginReturn);
+  }
+
+  const final = Object.assign(state, {
+    ...actions,
+    ...finalPluginReturns,
+  }) as Store<S & PluginReturns<P>, A, G>;
+
+  final.listen = <K extends keyof (S & PluginReturns<P>)>(
     key: K,
-    callback: (event: StoreEvent<S, K>) => void,
+    callback: (event: StoreEvent<S & PluginReturns<P>, K>) => void,
     options?: ListenerOptions,
   ) => {
     target.addEventListener(key as string, callback as EventListener, options);
@@ -53,5 +75,5 @@ export default function createStore<S extends object, A, G>(
     };
   };
 
-  return store;
+  return final;
 }
